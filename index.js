@@ -1,7 +1,18 @@
-const app = require("express")();
+import { MAIN_APP_URL } from "./constants.js";
+import express from "express";
+
+const app = express();
 
 app.get("/", (req, res) => {
-  console.log("Reqest received");
+  // get query params
+  console.log("Reqest Received");
+
+  const { id } = req.query;
+  console.log("Processing response for id: ", id);
+
+  // sends a fetch request for the increment but doesn't wait for the response
+  fetch(`${MAIN_APP_URL}/api/update/${id}`);
+
   const gif = Buffer.from(
     "R0lGODlhBwAHAIAAAP///wAAACH5BAEAAAAALAAAAAAHAAcAAAIPlI+py+0Po5yUFQA7",
     "base64"
